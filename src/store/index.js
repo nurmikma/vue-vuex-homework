@@ -43,11 +43,12 @@ export default createStore({
             },
             {
                 id: 5,
-                author: "Jüri Joonas",
-                createTime: "2024-09-18",
-                content: "Yoooo!",
-                altText: 'Tartu2024',
-                likes: 0,
+                author: "Markus",
+                createTime: "2024-11-22",
+                content: "Minu imeline oma armsate käpakestega tehtud käsitöö pitsa!",
+                imageSrc: require('@/assets/IMG_6080.jpg'),
+                altText: 'Kose2024',
+                likes: 12189,
             },
             {
                 id: 6,
@@ -83,6 +84,14 @@ export default createStore({
             },
             {
                 id: 10,
+                author: "Jüri Joonas",
+                createTime: "2024-09-18",
+                content: "Yoooo!",
+                altText: 'Tartu2024',
+                likes: 0,
+            },
+            {
+                id: 11,
                 author: "Evelyn Ees",
                 createTime: "2024-08-30",
                 content: "Suvi on läbi, aga mäletan häid aegu!",
