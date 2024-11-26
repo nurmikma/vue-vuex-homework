@@ -30,9 +30,9 @@ export default {
     },
     methods: {
         handleSubmit() {
-            alert('Form submitted successfully!');
             document.getElementById('email').value = ''
             document.getElementById('password').value = ''
+            alert('Form submitted successfully!');
         },
         validatePassword() {
             const password = this.password
@@ -52,7 +52,8 @@ export default {
             if (!upperCase.test(password)){
                 errors.push('Password must include at least on uppercase character')
             }
-            if (!lowerCase.test(password)) {
+            const lowercaseCount = (password.match(lowerCase) || []).length;
+            if (lowercaseCount < 2) {
                 errors.push("Password must include at least two lowercase characters.");
             }
             if (!numbers.test(password)) {
@@ -127,4 +128,5 @@ export default {
 .signup-container button:hover {
     background-color: #5479c9;
 }
+
 </style>
