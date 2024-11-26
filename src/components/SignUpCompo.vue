@@ -36,8 +36,6 @@ export default {
         },
         validatePassword() {
             const password = this.password
-            console.log(password)
-
 
             const upperCase = /[A-Z]/;
             const lowerCase = /[a-z]/g;
