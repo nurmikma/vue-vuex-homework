@@ -52,7 +52,8 @@ export default {
             if (!upperCase.test(password)){
                 errors.push('Password must include at least on uppercase character')
             }
-            if (!lowerCase.test(password)) {
+            const lowercaseCount = (password.match(lowerCase) || []).length;
+            if (lowercaseCount < 2) {
                 errors.push("Password must include at least two lowercase characters.");
             }
             if (!numbers.test(password)) {
