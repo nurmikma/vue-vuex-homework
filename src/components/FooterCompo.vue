@@ -1,6 +1,8 @@
 <template>
     <footer>
         <h2>Footer component</h2>
+        <p>&copy; 2024</p>
+        <p>Bossid Marten, Robin & Markus</p>
     </footer>
 </template>
 
@@ -22,5 +24,8 @@ footer{
     background-color: slategray;
     padding: 5px;
     border-radius: 3px;
+}
+footer>*{
+    margin: 5px;
 }
 </style>
