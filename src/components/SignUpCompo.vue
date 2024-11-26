@@ -30,9 +30,9 @@ export default {
     },
     methods: {
         handleSubmit() {
-            alert('Form submitted successfully!');
             document.getElementById('email').value = ''
             document.getElementById('password').value = ''
+            alert('Form submitted successfully!');
         },
         validatePassword() {
             const password = this.password
@@ -128,4 +128,5 @@ export default {
 .signup-container button:hover {
     background-color: #5479c9;
 }
+
 </style>
