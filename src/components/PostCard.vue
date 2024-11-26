@@ -12,6 +12,8 @@
         </div>
         
         <p>{{ content }}</p>
+        
+        <a v-if="link" :href="link" target="_blank" rel="noopener noreferrer" class="post-link"></a>
 
         <div class="flex-center">
             <button @click="likePost" class="like-button">
@@ -32,7 +34,7 @@ export default {
         content: { type: String, required: true },
         imageSrc: { type: String, default: null },
         altText: { type: String, default: 'Image' },
-        likes: { type: Number, default: 0 }
+        likes: { type: Number, default: 0 } 
     },
     methods: {
         likePost() {
@@ -76,5 +78,12 @@ export default {
 }
 img{
     border-radius: 3px;
+}
+.post-link {
+    margin: 5px 0;
+    color: blue;
+    text-decoration: underline;
+    font-weight: bold;
+    display: inline-block;
 }
 </style>

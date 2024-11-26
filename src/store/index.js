@@ -49,6 +49,7 @@ export default createStore({
                 imageSrc: require('@/assets/IMG_6080.jpg'),
                 altText: 'Kose2024',
                 likes: 12189,
+                link: "https://example.com/my-pizza"
             },
             {
                 id: 6,
