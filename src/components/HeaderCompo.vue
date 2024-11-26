@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h2>Header Component</h2>
+        <h2>"Post & Toast"</h2>
         <nav>
             <router-link to="/">Home</router-link>
             <router-link to="/signup">Sign up</router-link>
