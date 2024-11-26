@@ -1,23 +1,18 @@
 <template>
     <p>SIGNUP VIEW</p>
-    <PostCard
-      date="Nov 26, 2024"
-      content="This is a test post."
-      imageSrc="https://via.placeholder.com/150"
-      altText="Test Image"
-    />
+    <PostList></PostList>
 </template>
 
 
 
 <script>
-import PostCard from '@/components/PostCard.vue';
+import PostList from '@/components/PostList.vue';
 
 
 export default {
     name: 'MainView',
     components: {
-        PostCard
+        PostList
     }
 }
 </script>
