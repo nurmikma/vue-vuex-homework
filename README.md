@@ -3,6 +3,9 @@
 ## Project setup
 ```
 npm install
+npm install vue-router@next
+npm install boxicons
+
 ```
 
 ### Compiles and hot-reloads for development

@@ -55,7 +55,7 @@ export default {
 }
 
 .card>* {
-    margin: 2px 5px;
+    margin: 3px 5px 0px;
 }
 
 .card .meta {
@@ -73,5 +73,8 @@ export default {
 .like-button{
     background-color: inherit;
     border: none;
+}
+img{
+    border-radius: 3px;
 }
 </style>
