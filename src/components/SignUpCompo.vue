@@ -1,17 +1,17 @@
 <template>
     <div class="wrapper">
         <div class="signup-container">
-            <form id="signup-form" @submit.prevent="handleSubmit">
+            <form id="signup-form" @submit.prevent="validatePassword">
                 <div class="input-row">
                     <label for="email">Email</label>
                     <input type="email" id="email" placeholder="Email" required><br>
                 </div>
                 <div class="input-row">
                     <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="Password" required>
-                    <p v-if="passwordError" class="error">{{ passwordError }}</p><br>
+                    <input @change="validatePassword" v-model="password" type="password" id="password" placeholder="Password" required>
+                    <pre v-if="passwordError" class="error">{{ passwordError }}</pre><br>
                 </div>
-                <button @click="validatePassword" type="submit">Signup</button>
+                <button @click="validateSubmit" type="submit">Signup</button>
             </form>
         </div>
     </div>
@@ -27,30 +27,33 @@ export default {
             password: '',
             passwordError: '',
         };
-    },methods: {
+    },
+    methods: {
         handleSubmit() {
             alert('Form submitted successfully!');
+            document.getElementById('email').value = ''
+            document.getElementById('password').value = ''
         },
-        validatePassword(password) {
-            this.passwordError = '';
+        validatePassword() {
+            const password = this.password
+            console.log(password)
 
-            const minLength = 8;
-            const maxLength = 15;
+
             const upperCase = /[A-Z]/;
             const lowerCase = /[a-z]/g;
             const numbers = /[0-9]/;
             const specialChar = /_/;
 
-            let errors = [];
+            const errors = [];
 
-            if (password.length < minLength || password.length > maxLength) {
-                errors.push(`Password should be between ${minLength} and ${maxLength} characters.`);
+            if (password.length < 8 || password.length > 15) {
+                errors.push('The password length should be between 8 and 15 characters.')
             }
-            if (!upperCase.test(password)) {
-                errors.push("Password should include at least one uppercase alphabet character.");
+            if (!upperCase.test(password)){
+                errors.push('Password must include at least on uppercase character')
             }
             if (!lowerCase.test(password)) {
-                errors.push("Password should include at least two lowercase alphabet characters.");
+                errors.push("Password must include at least two lowercase characters.");
             }
             if (!numbers.test(password)) {
                 errors.push("Password should include at least one numeric value.");
@@ -58,16 +61,24 @@ export default {
             if (!specialChar.test(password)) {
                 errors.push("Password should include the character '_'.");
             }
-            if (!/^[A-Z]/.test(password)) {
+            if (!upperCase.test(password.charAt(0))) {
                 errors.push("Password should start with an uppercase letter.");
             }
 
-            if (errors.length > 0) {
-                this.passwordError = 'The password is not valid - ' + errors.join(' ');
-                return false;
-            }
-            return true;
+            this.passwordError = errors.join('\n')
+
+
+            if (errors.length > 0){
+                return true
+            } 
+
+            return false
         },
+        validateSubmit(){
+            if (!this.validatePassword()){
+                this.handleSubmit()
+            }
+        }
     },
 };
 </script>
