@@ -4,11 +4,12 @@
             <form id="signup-form" @submit.prevent="validatePassword">
                 <div class="input-row">
                     <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="Email" required><br>
+                    <input v-model="email" type="email" id="email" placeholder="Email" required><br>
                 </div>
                 <div class="input-row">
                     <label for="password">Password</label>
-                    <input @change="validatePassword" v-model="password" type="password" id="password" placeholder="Password" required>
+                    <input @change="validatePassword" v-model="password" type="password" id="password"
+                        placeholder="Password" required>
                     <pre v-if="passwordError" class="error">{{ passwordError }}</pre><br>
                 </div>
                 <button @click="validateSubmit" type="submit">Signup</button>
@@ -29,10 +30,10 @@ export default {
         };
     },
     methods: {
-        handleSubmit() {
-            document.getElementById('email').value = ''
-            document.getElementById('password').value = ''
-            alert('Form submitted successfully!');
+        validateSubmit() {
+            if (!this.validatePassword()) {
+                this.handleSubmit()
+            }
         },
         validatePassword() {
             const password = this.password
@@ -47,7 +48,7 @@ export default {
             if (password.length < 8 || password.length > 15) {
                 errors.push('The password length should be between 8 and 15 characters.')
             }
-            if (!upperCase.test(password)){
+            if (!upperCase.test(password)) {
                 errors.push('Password must include at least on uppercase character')
             }
             const lowercaseCount = (password.match(lowerCase) || []).length;
@@ -67,17 +68,41 @@ export default {
             this.passwordError = errors.join('\n')
 
 
-            if (errors.length > 0){
+            if (errors.length > 0) {
                 return true
-            } 
+            }
 
             return false
         },
-        validateSubmit(){
-            if (!this.validatePassword()){
-                this.handleSubmit()
-            }
-        }
+        handleSubmit() {
+            document.getElementById('email').value = ''
+            document.getElementById('password').value = ''
+            this.signUp()
+            alert('Form submitted successfully!');
+        },
+        signUp() {
+            var data = {
+                email: this.email,
+                password: this.password
+            };
+
+            fetch("http://localhost:3000/auth/signup", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                credentials: 'include', //  Don't forget to specify this if you need cookies
+                body: JSON.stringify(data),
+            })
+            .then((response) => response.json())
+            .then(() => {
+                this.$router.push("/");
+            })
+            .catch((e) => {
+                console.log(e);
+            });
+        },
+
     },
 };
 </script>
@@ -126,5 +151,4 @@ export default {
 .signup-container button:hover {
     background-color: #5479c9;
 }
-
 </style>

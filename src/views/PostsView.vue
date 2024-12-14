@@ -12,6 +12,12 @@ export default {
     name: 'MainView',
     components: {
         PostList
+    },
+    data: function () {
+        return {
+        }
+    },
+    methods: {
     }
 }
 </script>
