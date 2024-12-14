@@ -17,15 +17,30 @@
 export default {
     name: "PostCard",
     props: {
-        id: {type: Number, required: true},
-        date: { type: Date, required: true },
+        id: {type: String, required: true},
+        date: { type: String, required: true },
         content: { type: String, required: true },
     },
     methods: {
+        /** 
         likePost() {
             this.$store.dispatch('incrementLikesAct', this.id)
         }
-    }
+            */
+        
+    },
+    computed: {
+        formattedDate() {
+            // Format the date for display (example: 'Dec 14, 2024')
+            const dateObj = new Date(this.createTime); // Parse the date if it's passed as a string
+            return dateObj.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric',
+            });
+        },
+
+    },
 }
 </script>
 

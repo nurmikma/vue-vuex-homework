@@ -3,8 +3,8 @@
         <section class="section" id="left-section"></section>
         <div id="content">
             <button @click="logOut">Log out</button>
-            <PostCard v-for="post in postList" :key="post.id" :id="post.id" :date="post.date"
-                :content="post.content" :likes="post.likes" />
+            <PostCard v-for="post in postList" :key="post.id" :id="post.id" :date="post.createTime"
+                :content="post.content" />
 
             <!-- <button @click="resetLikes">Reset Likes</button> -->
             <button @click="navigateToAddPost">Add Post</button>
@@ -52,6 +52,7 @@ export default {
                     credentials: "include",
                 });
                 const posts = await response.json();
+                console.log(posts);
                 this.$store.state.postList = posts;
             } catch (error) {
                 console.error("Error fetching posts:", error);
