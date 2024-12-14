@@ -3,10 +3,11 @@
         <section class="section" id="left-section"></section>
         <div id="content">
             <button @click="logOut">Log out</button>
-            <PostCard v-for="post in postList" :key="post.id" :id="post.id" :author="post.author" :date="post.date"
-                :content="post.content" :imageSrc="post.imageSrc" :altText="post.altText" :likes="post.likes" />
+            <PostCard v-for="post in postList" :key="post.id" :id="post.id" :date="post.date"
+                :content="post.content" :likes="post.likes" />
 
-            <button @click="resetLikes">Reset Likes</button>
+            <!-- <button @click="resetLikes">Reset Likes</button> -->
+            <button @click="navigateToAddPost">Add Post</button>
         </div>
         <section class="section" id="right-section"></section>
     </div>
@@ -45,7 +46,24 @@ export default {
                     console.log("error logout");
                 });
         },
-    }
+        async fetchPosts() {
+            try {
+                const response = await fetch("http://localhost:3000/posts", {
+                    credentials: "include",
+                });
+                const posts = await response.json();
+                this.$store.state.postList = posts;
+            } catch (error) {
+                console.error("Error fetching posts:", error);
+            }
+        },
+        navigateToAddPost() {
+            this.$router.push("/add-post");
+        }
+    },
+    mounted() {
+        this.fetchPosts();
+    },
 }
 </script>
 

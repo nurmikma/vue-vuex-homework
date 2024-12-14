@@ -1,12 +1,8 @@
 <template>
     <div class="card">
-        <template v-if="imageSrc">
-            <img :src="imageSrc" :alt="altText">
-        </template>
         <div class="meta">
             <div class="flex-center">
                 <box-icon class="user" name='user' />
-                <p>{{ author }}</p>
             </div>
             <p>{{ date }}</p>
         </div>
@@ -14,13 +10,6 @@
         <p>{{ content }}</p>
         
         <a v-if="link" :href="link" target="_blank" rel="noopener noreferrer" class="post-link"></a>
-
-        <div class="flex-center">
-            <button @click="likePost" class="like-button">
-                <box-icon name="like"></box-icon>
-            </button>
-            <p>{{ likes }}</p>
-        </div>
     </div>
 </template>
 
@@ -29,12 +18,8 @@ export default {
     name: "PostCard",
     props: {
         id: {type: Number, required: true},
-        author: { type: String, required: true },
-        date: { type: String, required: true },
+        date: { type: Date, required: true },
         content: { type: String, required: true },
-        imageSrc: { type: String, default: null },
-        altText: { type: String, default: 'Image' },
-        likes: { type: Number, default: 0 } 
     },
     methods: {
         likePost() {
