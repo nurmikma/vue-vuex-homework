@@ -1,6 +1,6 @@
 <template>
     <footer>
-        <h2>"Signed, Sealed, Delivered"</h2>
+        <h2>"Signed, Sealed, Delivered💋"</h2>
         <p>&copy; 2024</p>
         <p>Bossid Marten, Robin & Markus</p>
     </footer>

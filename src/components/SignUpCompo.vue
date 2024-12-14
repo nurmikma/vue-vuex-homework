@@ -37,7 +37,7 @@ export default {
         validatePassword() {
             const password = this.password
 
-            const upperCase = /[A-Z]/;
+            const upperCase = /[A-ZÖÄÕÜ]/;
             const lowerCase = /[a-z]/g;
             const numbers = /[0-9]/;
             const specialChar = /_/;
