@@ -3,6 +3,7 @@ import SignupView from '@/views/SignupView.vue'
 import PostsView from '@/views/PostsView.vue'
 import LoginView from '@/views/LoginView.vue'
 import AddPostView from '@/views/AddPostView.vue';
+import PostUpdateView from '@/views/PostUpdateView.vue';
 import auth from '@/auth'
 
 const routes = [{
@@ -31,12 +32,42 @@ const routes = [{
 { 
     path: '/posts', 
     name: 'PostsView', 
-    component: PostsView 
+    component: PostsView,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('login')
+        } else {
+            next();
+        }
+    }
 },
 { 
     path: '/add-post', 
     name: 'AddPostView', 
-    component: AddPostView }
+    component: AddPostView,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('login')
+        } else {
+            next();
+        }
+    }
+},
+{
+    path: '/posts/:id',
+    name: 'PostUpdate',
+    component: PostUpdateView,
+    beforeEnter: async (to, from, next) => {
+        let authResult = await auth.authenticated();
+        if (!authResult) {
+            next('login')
+        } else {
+            next();
+        }
+    }
+}
 ]
 
 const router = createRouter({

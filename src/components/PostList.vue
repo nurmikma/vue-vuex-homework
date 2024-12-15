@@ -3,7 +3,7 @@
         <section class="section" id="left-section"></section>
         <div id="content">
             <button @click="logOut">Log out</button>
-            <PostCard v-for="post in postList" :key="post.id" :id="post.id" :date="post.createTime"
+            <PostCard v-for="post in postList" :key="post.id" :id="post.id" :date="post.createtime"
                 :content="post.content" />
 
             <!-- <button @click="resetLikes">Reset Likes</button> -->

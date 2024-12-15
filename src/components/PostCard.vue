@@ -1,15 +1,13 @@
 <template>
-    <div class="card">
+    <div class="card" @click="navigateToUpdate">
         <div class="meta">
             <div class="flex-center">
                 <box-icon class="user" name='user' />
             </div>
-            <p>{{ date }}</p>
+            <p>{{ formattedDate }}</p>
         </div>
         
         <p>{{ content }}</p>
-        
-        <a v-if="link" :href="link" target="_blank" rel="noopener noreferrer" class="post-link"></a>
     </div>
 </template>
 
@@ -17,29 +15,24 @@
 export default {
     name: "PostCard",
     props: {
-        id: {type: String, required: true},
+        id: { type: String, required: true },
         date: { type: String, required: true },
         content: { type: String, required: true },
     },
     methods: {
-        /** 
-        likePost() {
-            this.$store.dispatch('incrementLikesAct', this.id)
-        }
-            */
-        
+        navigateToUpdate() {
+      this.$router.push(`/posts/${this.id}`);
+    }
     },
     computed: {
         formattedDate() {
-            // Format the date for display (example: 'Dec 14, 2024')
-            const dateObj = new Date(this.createTime); // Parse the date if it's passed as a string
+            const dateObj = new Date(this.date);
             return dateObj.toLocaleDateString('en-US', {
                 year: 'numeric',
                 month: 'short',
                 day: 'numeric',
             });
         },
-
     },
 }
 </script>
