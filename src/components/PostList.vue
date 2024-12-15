@@ -8,6 +8,7 @@
 
             <!-- <button @click="resetLikes">Reset Likes</button> -->
             <button @click="navigateToAddPost">Add Post</button>
+            <button @click="deleteAllPosts">Delete All</button>
         </div>
         <section class="section" id="right-section"></section>
     </div>
@@ -60,6 +61,23 @@ export default {
         },
         navigateToAddPost() {
             this.$router.push("/add-post");
+        },
+        async deleteAllPosts() {
+            try {
+                const response = await fetch("http://localhost:3000/posts", {
+                    method: "DELETE",
+                    credentials: "include",
+                });
+
+                if (response.ok) {
+                    console.log("All posts deleted successfully");
+                    this.$store.state.postList = [];
+                } else {
+                    console.error("Failed to delete posts");
+                }
+            } catch (error) {
+                console.error("Error deleting posts:", error);
+            }
         }
     },
     mounted() {

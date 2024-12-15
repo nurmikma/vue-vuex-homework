@@ -5,6 +5,7 @@ import LoginView from '@/views/LoginView.vue'
 import AddPostView from '@/views/AddPostView.vue';
 import PostUpdateView from '@/views/PostUpdateView.vue';
 import auth from '@/auth'
+import ContactsView from '@/views/ContactsView.vue';
 
 const routes = [{
     path: '/',
@@ -18,6 +19,11 @@ const routes = [{
             next();
         }
     }
+},
+{
+    path: '/contact',
+    name: 'ContactsView',
+    component: ContactsView
 },
 {
     path: '/signup',
